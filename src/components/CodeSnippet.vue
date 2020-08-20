@@ -1,6 +1,6 @@
 <template>
   <div class='code-component'>
-    <pre>{{code}}</pre>
+    <pre class="prettyprint linenums">{{code}}</pre>
   </div>
 </template>
 
@@ -20,5 +20,6 @@ export default class CodeSnippet extends Vue {
   padding: 0 8px;
   display: inline-block;
   white-space: pre-wrap;
+  width: 100%;
 }
 </style>

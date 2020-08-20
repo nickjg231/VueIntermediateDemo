@@ -1,5 +1,6 @@
 <template>
   <div id='app'>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sons-of-obsidian" type="application/javascript"></script>
 
   </div>
 </template>
