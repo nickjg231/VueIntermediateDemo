@@ -1,7 +1,7 @@
 <template>
   <div id='app'>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sons-of-obsidian" type="application/javascript"></script>
-
+    <JavascriptCrashCourse></JavascriptCrashCourse>
     <StateManagement></StateManagement>
   </div>
 </template>
@@ -11,12 +11,14 @@ import { Vue, Component } from 'vue-property-decorator';
 import CodeSnippet from '@/components/CodeSnippet.vue';
 import SectionComponent from '@/components/SectionComponent.vue';
 import StateManagement from '@/components/StateManagement.vue';
+import JavascriptCrashCourse from '@/components/JavascriptCrashCourse.vue';
 
 @Component({
   components: {
     SectionComponent,
     CodeSnippet,
-    StateManagement
+    StateManagement,
+    JavascriptCrashCourse
   }
 })
 export default class App extends Vue {
