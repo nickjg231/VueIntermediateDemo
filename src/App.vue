@@ -1,8 +1,8 @@
 <template>
   <div id='app'>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sons-of-obsidian" type="application/javascript"></script>
-    <JavascriptCrashCourse></JavascriptCrashCourse>
-    <StateManagement></StateManagement>
+    <Navbar></Navbar>
+    <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
 
@@ -12,13 +12,15 @@ import CodeSnippet from '@/components/CodeSnippet.vue';
 import SectionComponent from '@/components/SectionComponent.vue';
 import StateManagement from '@/components/StateManagement.vue';
 import JavascriptCrashCourse from '@/components/JavascriptCrashCourse.vue';
+import Navbar from '@/components/Navbar.vue';
 
 @Component({
   components: {
     SectionComponent,
     CodeSnippet,
     StateManagement,
-    JavascriptCrashCourse
+    JavascriptCrashCourse,
+    Navbar
   }
 })
 export default class App extends Vue {
