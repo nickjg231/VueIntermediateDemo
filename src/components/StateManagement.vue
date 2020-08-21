@@ -44,6 +44,16 @@
 
             <CodeSnippet :code="incrementCounterTemplate"></CodeSnippet>
             <CodeSnippet :code="incrementCounterScript"></CodeSnippet>
+
+            <h3>The Simple Counter Example</h3>
+            <div class="two-columns">
+                <div class="item">
+                    <SharedStateA></SharedStateA>
+                </div>
+                <div class="item">
+                    <SharedStateB></SharedStateB>
+                </div>
+            </div>
         </template>
     </section-component>
 </template>
@@ -52,11 +62,15 @@
 import { Vue, Component } from 'vue-property-decorator';
 import CodeSnippet from '@/components/CodeSnippet.vue';
 import SectionComponent from '@/components/SectionComponent.vue';
+import SharedStateA from '@/components/SharedStateA.vue';
+import SharedStateB from '@/components/SharedStateB.vue';
 
 @Component({
     components: {
         CodeSnippet,
-        SectionComponent
+        SectionComponent,
+        SharedStateA,
+        SharedStateB
     }
 })
 export default class StateManagement extends Vue {
