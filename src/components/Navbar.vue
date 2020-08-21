@@ -1,6 +1,7 @@
 <template>
     <div class="nav-container">
         <ul>
+            <router-link :to="'/'"><li>Home</li></router-link>
             <router-link :to="'/JavaScript'"><li>JavaScript</li></router-link>
             <router-link :to="'/StateManagement'"><li>State Management</li></router-link>
         </ul>
@@ -26,6 +27,21 @@ ul {
     li {
         display: inline;
         margin: 18px;
+    }
+}
+
+a {
+    text-decoration: none;
+    transition: 300ms;
+    font-weight: bold;
+    color: #35495e;
+
+    &:visited {
+        color: #35495e;
+    }
+
+    &:hover {
+        color: #42b883;
     }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <p>VueJS Part II: Intermediate Concepts - Events, Binding, State Management, and More.</p>
   </div>
 </template>
 
@@ -16,3 +16,10 @@ import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 })
 export default class Home extends Vue {}
 </script>
+
+<style lang="scss" scoped>
+  .home {
+    text-align: center;
+    margin: 180px auto 0;
+  }
+</style>
