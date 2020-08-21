@@ -7,6 +7,9 @@
             <br/><br/>
             What are some examples of state that we, as web application developers, might be interested in?
             <br/>
+
+            <hr>
+
             <h3>How is state managed and shared in Vue with Vuex?</h3>
             <div class="two-columns">
             <div class="item">
@@ -24,6 +27,8 @@
                 <li>Vuex stores are reactive. When Vue components retrieve state from it, they will reactively and efficiently update if the store's state changes.</li>
                 <li>You cannot directly mutate the store's state. The only way to change a store's state is by explicitly committing mutations. This ensures every state change leaves a track-able record, and enables tooling that helps us better understand our applications.</li>
             </ol>
+
+            <hr>
 
             <h3>Blank Slate: An Empty Store</h3>
             <p>The following is the code you can expect to see in a <code>store.ts</code> file after generating a Vue application in the <code>vue-cli</code>:</p>
@@ -44,6 +49,8 @@
 
             <CodeSnippet :code="incrementCounterTemplate"></CodeSnippet>
             <CodeSnippet :code="incrementCounterScript"></CodeSnippet>
+
+            <hr>
 
             <h3>The Simple Counter Example</h3>
             <div class="two-columns">
@@ -132,6 +139,8 @@ export default class StateManagement extends Vue {
 }
 </script>
 
-<<style lang="stylus" scoped>
-
+<style lang="scss" scoped>
+hr {
+    margin: 64px auto;
+}
 </style>
