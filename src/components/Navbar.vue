@@ -5,11 +5,12 @@
             <router-link :to="'/JavaScript'"><li>JavaScript</li></router-link>
             <router-link :to="'/StateManagement'"><li>State Management</li></router-link>
         </ul>
+        <hr>
     </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default class Navbar extends Vue {
 

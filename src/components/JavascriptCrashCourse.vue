@@ -20,6 +20,8 @@
         </p>
         <CodeSnippet :code="functionDeclarations"></CodeSnippet>
 
+        <hr>
+
         <h3>Data Types</h3>
         <ul>
             <li><code>undefined</code> - automatic value for uninitialized variables and unassigned formal arguments</li>
@@ -33,7 +35,7 @@
         </ul>
         <CodeSnippet :code="dataTypes"></CodeSnippet>
 
-
+        <hr>
 
         <h3>String Interpolation</h3>
         <p>There are several ways to handle string interpolation. There's the old "standard" way:</p>
@@ -41,7 +43,7 @@
         <p>There are also template literals:</p>
         <CodeSnippet :code="templateLiterals"></CodeSnippet>
 
-        
+        <hr>
 
         <h3>Arrays</h3>
         <p>Arrays work more or less the way you would expect, with a few exceptions. For example, an array can contain values of varying types.</p>
@@ -60,8 +62,12 @@
         </ul>
         <CodeSnippet :code="arrayHelp"></CodeSnippet>
 
+        <hr>
+
         <h3>Objects</h3>
 
+        <hr>
+        
         <h3>Control Flow / Looping</h3>
         <p>
             The rules for control flow and looping that you're familiar with from other languages apply to JavaScript.<br/>
@@ -69,8 +75,49 @@
             The evaluation shortcut found in languages like C/C++ is available as well (if the value is non-zero and not <code>null</code>, <code>undefined</code> or explicitly <code>false</code>, then it evaluates to <code>true</code>.)
         </p>
 
-        <h3>Comparisons</h3>
+        <p>
+            What actually evaluates to <code>false</code> in JavaScript? All of the following:
+        </p>
+        <ul>
+            <li><code>false</code></li>
+            <li><code>0</code> and all variants (<code>0.0</code>, <code>0x0</code>, <code>-0</code>, <code>0n</code>, <code>-0n</code>)</li>
+            <li><code>""</code>, <code>''</code>, <code>``</code>, and strings of length <code>0</code></li>
+            <li><code>null</code></li>
+            <li><code>undefined</code></li>
+            <li><code>NaN</code></li>
+        </ul>
         
+        <hr>
+
+        <h3>Comparisons</h3>
+        <p>There are 2 types of checks for sameness - "strict" and "loose" wherein the "strict" check also looks at the <i>type</i> of the operands, and the "loose" check does not.
+        <ul>
+            <li><code>==</code>
+                <ul>
+                    <li>will "coerce" or implicitly convert values - for example, <code>5 == "5"</code> resolves to <code>true</code> even though the left operand is a <code>number</code> and the right operand is a <code>string</code>.</li>
+                </ul>
+            </li>
+            <li>
+                <code>===</code>
+                <ul>
+                    <li>will check if values are equal in value <i>and</i> type - for example, <code>5 === "5"</code> is false.</li>
+                </ul>
+            </li>
+            <li>
+                <code>!=</code>
+                <ul>
+                    <li>will "coerce" or implicitly convert values - for example <code>5 != "5"</code> is false, because when <code>"5"</code> is implicitly converted <code>ToNumber()</code>, they are indeed equal.</li>
+                </ul>
+            </li>
+            <li>
+                <code>!==</code>
+                <ul>
+                    <li>not equal in value <i>or</i> not equal in type - for example, <code>5 !== "5"</code> is true because a <code>number</code> is not the same type as a <code>string</code>.</li>
+                </ul>
+            </li>
+        </ul>
+        <p>Additionally, all of the typical equality and boolean operations you're used to are also available.</p>
+        <hr>
         <h3>Promises</h3>
     </section-component>
 
@@ -152,5 +199,7 @@ console.log("With " + dogs + " dogs and " + cats + " cats, I have " + (dogs + ca
 </script>
 
 <style lang="scss" scoped>
-
+hr {
+    margin: 64px auto;
+}
 </style>
