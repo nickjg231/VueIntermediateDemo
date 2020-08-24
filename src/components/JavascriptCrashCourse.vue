@@ -91,6 +91,8 @@
         <CodeSnippet :code="objectUse"></CodeSnippet>
         
         <p>What benefit do we get in the case of the TypeScript version vs. the vanilla JavaScript version above?</p>
+
+        <p>* See example exercises.</p>
         <hr>
         
         <h3>Control Flow / Looping</h3>
@@ -298,9 +300,6 @@ fetch('https://example.com/api/GetSomeData')
     private objectFromClass: string =
     `
     class Point {
-        x;
-        y;
-
         constructor(x, y) {
             this.x = x || 0;
             this.y = y || 0;
@@ -321,7 +320,7 @@ fetch('https://example.com/api/GetSomeData')
         private x: number;
         private y: number;
 
-        constructor(x: number, y: number) {
+        constructor(x?: number, y?: number) {
             this.x = x || 0;
             this.y = x || 0;
         }
