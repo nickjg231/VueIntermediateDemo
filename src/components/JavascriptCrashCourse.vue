@@ -119,6 +119,28 @@
         <p>Additionally, all of the typical equality and boolean operations you're used to are also available.</p>
         <hr>
         <h3>Promises</h3>
+        <p>Promises are useful when we want to be able to continue doing other things while we wait for some task to complete.</p>
+        <p>They also allow us to create situations where some code waits on that task to complete while other code continues right along whether that task has completed or not.</p>
+        <p><CodeSnippet :code="promiseWaiting"></CodeSnippet></p>
+        <p>So what does creating a promise from scratch look like? In a simple example, we might have:</p>
+        <p><CodeSnippet :code="promiseSyntax"></CodeSnippet></p>
+        <p>Can you draw any parallels to the real world based on this description?</p>
+        <p>
+            It is more likely that you'll be consuming promises rather than creating them from scratch. What does that look like?
+            <CodeSnippet :code="promiseConsume"></CodeSnippet>
+        </p>
+        <p>
+            In general, the process is:
+            <ol>
+                <li>Call some function that returns a promise, such as <code>fetch()</code></li>
+                <li>If some functionality is dependent upon the completion of that function, put it in a <code>.then()</code> block</li>
+                <li>If any functionality is dependent upon completion of the <code>.then()</code> block, you can chain <code>.then()</code> blocks as needed</li>
+                <li>To handle a rejected call or any kind of failures (such as <code>500</code>s or any other HTTP errors), add a <code>.catch()</code> block to the chain</li>
+                <li>For functionality that depends on the call completing but must run whether it is succesful or not, add a <code>.finally()</code> to the end of the chain</li>
+            </ol>
+            <br/>
+            <CodeSnippet :code="promiseOverview"></CodeSnippet>
+        </p>
     </section-component>
 
 </template>
@@ -194,6 +216,57 @@ console.log("With " + dogs + " dogs and " + cats + " cats, I have " + (dogs + ca
     const cats = 2;
 
     console.log(\`With \${dogs} dogs and \${cats} cats, I have \${dogs + cats} pets.\`);
+    `;
+
+    private promiseSyntax: string =
+    `
+    let promiseToDoSomething = new Promise((resolve, reject) => {
+        // do something
+
+        if (someConditionIsMet) {
+            resolve('success message');
+        } else {
+            reject('failure message');
+        }
+    });
+    `;
+
+    private promiseConsume: string =
+    `
+    promiseToDoSomething()
+    .then(result => {
+        console.log("The promise resolved successfully: " + result);
+    })
+    .catch(result => {
+        console.log("The promise was rejected: " + result);
+    })
+    `;
+
+    private promiseWaiting: string =
+    `
+fetch('https://example.com/api/GetSomeData')
+  .then(response => response.json())     // .then() blocks can't run until the call before it completes
+  .then(data => console.log(data))       // so these 2 .then() blocks always run in order
+  .catch(error => console.error(error));
+
+  // other code that doesn't depend on the response from the fetch() above will continue to run
+    `;
+
+    private promiseOverview: string =
+    `
+    promiseToDoSomething()
+    .then(result => {
+        // cannot run until promiseToDoSomething yields some kind of result (stored in result)
+    })
+    .then(resultFromPrior => {
+        // cannot run until the previous .then() block has returned a result (stored in resultFromPrior)
+    })
+    .catch(error => {
+        // will catch errors / rejected promises
+    })
+    .finally(fin => {
+        // will always run (even after errors), but not until the entire chain above has completed
+    });
     `;
 }
 </script>
