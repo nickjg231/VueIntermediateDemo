@@ -16,10 +16,17 @@
     
         <h3>Function Declarations</h3>
         <p>
-            The following are equivalent:
+            The following are essentially equivalent:
         </p>
         <CodeSnippet :code="functionDeclarations"></CodeSnippet>
 
+        <p>There is a key difference between the above examples: using the arrow syntax <code>() =></code> means your function does not have its own <code>this</code> context.
+           Instead, its <code>this</code> refers to the parent/enclosing scope's context which could be a parent function, a VueJS component, or even the Window or global object.
+        </p>
+
+        <p>
+            * See example exercises.
+        </p>
         <hr>
 
         <h3>Data Types</h3>
@@ -62,10 +69,28 @@
         </ul>
         <CodeSnippet :code="arrayHelp"></CodeSnippet>
 
+        <p>
+            * See example exercises.
+        </p>
         <hr>
 
         <h3>Objects</h3>
+        <p>You can create anonymous objects easily. They're essentially just a grouped set of key/value pairs:</p>
+        <p><CodeSnippet :code="anonymousObject"></CodeSnippet></p>
+        <p>Anonymous objects can often be found when working with front end frameworks - for example, to set some in-template stylings:</p>
+        <p><CodeSnippet :code="inTemplateObject"></CodeSnippet></p>
+        
+        <p>
+            Objects can be derived from <code>Class</code>es (like you may or may not be familiar with already.) The following is a side by side of the same class in vanilla JS and what you might expect to see in a TypeScript file:
+        </p>
+        
+        <CodeSnippet :code="objectFromClass"></CodeSnippet>
 
+        <CodeSnippet :code="objectFromClassTypeScript"></CodeSnippet>
+
+        <CodeSnippet :code="objectUse"></CodeSnippet>
+        
+        <p>What benefit do we get in the case of the TypeScript version vs. the vanilla JavaScript version above?</p>
         <hr>
         
         <h3>Control Flow / Looping</h3>
@@ -117,6 +142,7 @@
             </li>
         </ul>
         <p>Additionally, all of the typical equality and boolean operations you're used to are also available.</p>
+
         <hr>
         <h3>Promises</h3>
         <p>Promises are useful when we want to be able to continue doing other things while we wait for some task to complete.</p>
@@ -267,6 +293,83 @@ fetch('https://example.com/api/GetSomeData')
     .finally(fin => {
         // will always run (even after errors), but not until the entire chain above has completed
     });
+    `;
+
+    private objectFromClass: string =
+    `
+    class Point {
+        x;
+        y;
+
+        constructor(x, y) {
+            this.x = x || 0;
+            this.y = y || 0;
+        }
+
+        static distance(a, b) {
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+
+            return Math.hypot(dx, dy);
+        }
+    }
+    `;
+
+    private objectFromClassTypeScript: string =
+    `
+    export default class Point {
+        private x: number;
+        private y: number;
+
+        constructor(x: number, y: number) {
+            this.x = x || 0;
+            this.y = x || 0;
+        }
+
+        static distance(p1: Point, p2: Point): number {
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+
+            return Math.hypot(dx, dy);
+        }
+    }
+    `;
+
+    private objectUse: string =
+    `
+    // Create some points:
+    const p1 = new Point(5, 5);
+    const p2 = new Point(10, 10);
+    const p3 = new Point();  // defaults to (0, 0)
+
+    // distance is a static method - called without an instance of the class
+    p1.distance;   // undefined
+    p2.distance(); // TypeError: p2.distance is not a function
+
+    // call .distance() like a static method in other languages using the class instead of an instance:
+    Point.distance(p1, p2);
+    `;
+
+    private anonymousObject: string =
+    `
+    var rectangle = {
+        height: 8,
+        width: 5,
+        color: "#abcdef",
+        corners: [
+            { x: 0, y: 0 },
+            { x: 5, y: 0 },
+            { x: 0, y: -8 },
+            { x: 5, y: -8 },
+        ]
+    }
+    `;
+
+    private inTemplateObject: string =
+    `
+    <div v-bind:class="{ active: isActive, 'text-danger': hasError }">
+        <p>More Content Here.</p>
+    </div>
     `;
 }
 </script>
