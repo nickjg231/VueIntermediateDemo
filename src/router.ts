@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import JavascriptCrashCourse from './components/JavascriptCrashCourse.vue';
-import StateManagement from './components/StateManagement.vue';
+import JavascriptCrashCourse from './views/JavascriptCrashCourse.vue';
+import StateManagement from './views/StateManagement.vue';
 
 Vue.use(Router);
 

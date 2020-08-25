@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div class="counter-display">
-            <p>Component A</p>
+            <p>Component {{ componentID }}</p>
             The value of the counter in the store is currently: {{ $store.state.count }}.
         </div>
         <div class="incrementer">
@@ -11,10 +11,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component({})
-export default class SharedStateA extends Vue {
+export default class SharedState extends Vue {
+    @Prop() private componentID!: string;
+
     private incrementCounter(): void {
         this.$store.commit('increment');
     }

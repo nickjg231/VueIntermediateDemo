@@ -12,22 +12,15 @@
 
             <h3>How is state managed and shared in Vue with Vuex?</h3>
             <div class="two-columns">
-            <div class="item">
-                <img src="shared-state-diagram.png"/>
+                <div class="item">
+                    <img src="shared-state-diagram.png"/>
+                </div>
+                <div class="item">
+                    <p>We manage shared state by implementing a <b>store</b> pattern.</p>            
+                    <p>With this pattern, a single reactive state object can be shared between multiple Vue components.</p>
+                    <p>As a simple example, imagine that Component A updates a value in the store. This change would be automatically propagated down to Component B.</p>
+                </div>
             </div>
-            <div class="item">
-                <p>We manage shared state by implementing a <b>store</b> pattern.</p>            
-                <p>With this pattern, a single state object can be shared between multiple Vue components.</p>
-                <p>As a simple example, imagine that Component A updates a value in the store. This change would be automatically propagated down to Component B.</p>
-            </div>
-            </div>
-            
-            <p>How is the Store Pattern any different than just sharing a root <code>data</code> object?</p>
-            <ol>
-                <li>Vuex stores are reactive. When Vue components retrieve state from it, they will reactively and efficiently update if the store's state changes.</li>
-                <li>You cannot directly mutate the store's state. The only way to change a store's state is by explicitly committing mutations. This ensures every state change leaves a track-able record, and enables tooling that helps us better understand our applications.</li>
-            </ol>
-
             <hr>
 
             <h3>Blank Slate: An Empty Store</h3>
@@ -55,10 +48,10 @@
             <h3>The Simple Counter Example</h3>
             <div class="two-columns">
                 <div class="item">
-                    <SharedStateA></SharedStateA>
+                    <SharedState :componentID="'A'"></SharedState>
                 </div>
                 <div class="item">
-                    <SharedStateB></SharedStateB>
+                    <SharedState :componentID="'B'"></SharedState>
                 </div>
             </div>
         </template>
@@ -69,15 +62,13 @@
 import { Vue, Component } from 'vue-property-decorator';
 import CodeSnippet from '@/components/CodeSnippet.vue';
 import SectionComponent from '@/components/SectionComponent.vue';
-import SharedStateA from '@/components/SharedStateA.vue';
-import SharedStateB from '@/components/SharedStateB.vue';
+import SharedState from '@/components/SharedState.vue';
 
 @Component({
     components: {
         CodeSnippet,
         SectionComponent,
-        SharedStateA,
-        SharedStateB
+        SharedState
     }
 })
 export default class StateManagement extends Vue {

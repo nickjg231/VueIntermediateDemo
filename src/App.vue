@@ -10,16 +10,12 @@
 import { Vue, Component } from 'vue-property-decorator';
 import CodeSnippet from '@/components/CodeSnippet.vue';
 import SectionComponent from '@/components/SectionComponent.vue';
-import StateManagement from '@/components/StateManagement.vue';
-import JavascriptCrashCourse from '@/components/JavascriptCrashCourse.vue';
 import Navbar from '@/components/Navbar.vue';
 
 @Component({
   components: {
     SectionComponent,
     CodeSnippet,
-    StateManagement,
-    JavascriptCrashCourse,
     Navbar
   }
 })
