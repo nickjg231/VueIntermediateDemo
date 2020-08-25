@@ -1,6 +1,5 @@
 <template>
     <section-component>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sons-of-obsidian" type="application/javascript"></script>
         <template slot="title">State Management: Vuex and the Store</template>
         <template slot="header">
             Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them.

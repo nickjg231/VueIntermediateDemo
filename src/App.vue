@@ -1,13 +1,12 @@
 <template>
   <div id='app'>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sons-of-obsidian" type="application/javascript"></script>
     <Navbar></Navbar>
     <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import CodeSnippet from '@/components/CodeSnippet.vue';
 import SectionComponent from '@/components/SectionComponent.vue';
 import Navbar from '@/components/Navbar.vue';
@@ -20,7 +19,13 @@ import Navbar from '@/components/Navbar.vue';
   }
 })
 export default class App extends Vue {
-
+  private created() {
+    this.$router.afterEach(() => {
+      this.$nextTick(() => {
+        (window as any).PR.prettyPrint();
+      });
+    });
+  }
 }
 </script>
 
@@ -70,6 +75,16 @@ code {
 
     &:last-child {
       border-bottom: none;
+    }
+  }
+}
+
+.tight-list {
+  & > li {
+    margin-bottom: 16px;
+
+    p {
+      margin: 8px 0;
     }
   }
 }

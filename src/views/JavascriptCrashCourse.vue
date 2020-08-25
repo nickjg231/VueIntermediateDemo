@@ -1,6 +1,5 @@
 <template>
     <section-component>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sons-of-obsidian" type="application/javascript"></script>
         <template slot="title">JavaScript: A Quick Intro</template>
         <template slot="header">
             The following is meant to be a quick course in the basics of JavaScript / TypeScript for those with at least <i>some</i> experience in any object oriented programming language.

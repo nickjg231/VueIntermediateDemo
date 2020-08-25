@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import JavascriptCrashCourse from './views/JavascriptCrashCourse.vue';
 import StateManagement from './views/StateManagement.vue';
+import Binding from './views/Binding.vue';
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/StateManagement',
       name: 'State Management: Vuex Store',
       component: StateManagement,
+    },
+    {
+      path: '/data-binding',
+      name: 'Binding',
+      component: Binding,
     },
   ],
 });
