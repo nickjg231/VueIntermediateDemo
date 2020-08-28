@@ -5,7 +5,7 @@
       <input v-model="inputText"
              type="text"
              @keypress.enter="triggerEvent(textEvents, 'enter')"
-             @keydown.tab="triggerEvent(textEvents, 'tab')"
+             @keydown.tab.prevent="triggerEvent(textEvents, 'tab')"
              @keydown.delete="triggerEvent(textEvents, 'delete')"
              @keydown.esc="triggerEvent(textEvents, 'esc')"
              @keypress.space="triggerEvent(textEvents, 'space')"
