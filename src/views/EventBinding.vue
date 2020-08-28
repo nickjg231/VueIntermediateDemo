@@ -37,8 +37,8 @@
       <br>
       <p>There are certain Event Modifiers you can use to prevent standard behavior of events. The list is <a
           href="https://vuejs.org/v2/guide/events.html#Event-Modifiers">here in Vue documentation</a>. These aren't
-        needed often, but here's an example of using <code>@click.stop</code>, which is the modifier for <code>event.stopPropagation()</code>,
-        on the previous example:</p>
+        needed often, but here's an example of using <code class="prettyprint">@click.stop</code>, which is the modifier
+        for <code class="prettyprint">event.stopPropagation()</code>, on the previous example:</p>
       <code-snippet :code="bubblePreventTemplate"></code-snippet>
       <br>
       <form @click="callAlert('form')" style="border: 1px solid red; padding:8px">form
@@ -52,11 +52,13 @@
         real need. Usually a task that seemingly requires it can be solved a better way. Doing so can create hidden
         pitfalls, as detailed <a href="https://javascript.info/bubbling-and-capturing">here</a>. For example:</p>
       <ol>
-        <li>We have a nested menu. Each submenu handles clicks on its elements and call <code>stopPropagation</code> so
+        <li>We have a nested menu. Each submenu handles clicks on its elements and calls <code class="prettyprint">event.stopPropagation()</code>
+          so
           that the outer menu won't trigger.
         </li>
         <li>Later we decide to catch clicks on the whole window, to track users’ behavior (where people click). Some
-          analytic systems do that. Usually the code uses <code>document.addEventListener('click'…)</code> to catch all
+          analytic systems do that. Usually the code uses <code
+              class="prettyprint">document.addEventListener('click'…)</code> to catch all
           clicks.
         </li>
         <li>Our analytic won’t work over the area where clicks are stopped by stopPropagation. Sadly, we’ve got a “dead
@@ -66,15 +68,41 @@
     </section-component>
     <section-component>
       <template slot="title">Key Code Modifiers</template>
-      <template slot="header">Similar to event modifiers, you can setup triggers for when certain keys are pressed</template>
+      <template slot="header">Similar to event modifiers, you can setup triggers for when certain keys are pressed
+      </template>
       <code-snippet :code="keyEventModifier"></code-snippet>
       <event-keycode-printer></event-keycode-printer>
     </section-component>
     <section-component>
       <template slot="title">Custom Events</template>
-      <template slot="header">Capturing events from components is different than capturing events on native HTML
-        elements.
+      <template slot="header">Vue lets you listen to native events on HTML elements (input, click, etc). However, it
+        also lets you listen for <b>custom events</b>, which allows you to trigger an event from a child component, then
+        catch it and respond in its parent.
       </template>
+      <p>You do this by emitting an event from a child, using any event name you'd like. The child
+        component can emit a custom event in the following ways:</p>
+      <ul>
+        <li>
+          <p>Inline - <code class="prettyprint">$emit("event-name", payload)</code>:</p>
+          <code-snippet :code="emitButtonInline"></code-snippet>
+        </li>
+        <li>
+          <p>Function with Emit annotation - Function name is converted to event name (in kebab-case):</p>
+          <code-snippet :code="emitButtonFunctionTemplate"></code-snippet>
+          <code-snippet :code="emitButtonFunctionScript"></code-snippet>
+        </li>
+        <li>
+          <p>Function with Emit annotation with argument - Argument becomes event name:</p>
+          <code-snippet :code="emitButtonCustomTemplate"></code-snippet>
+          <code-snippet :code="emitButtonCustomScript"></code-snippet>
+        </li>
+      </ul>
+      <p>Each of these would emit identical events. The parent component could then catch these events adding an event handler that calls a function:</p>
+      <code-snippet :code="emitParentTemplate"></code-snippet>
+      <p>Then the arguments to this function would be the payload you emitted in the event. In this case, the student.id value</p>
+      <code-snippet :code="emitParentScript"></code-snippet>
+      <p>Take the following example</p>
+      <custom-event-parent></custom-event-parent>
     </section-component>
   </div>
 </template>
@@ -87,9 +115,11 @@ import EventButton from '@/components/EventButton.vue';
 import EventButtonExpressionAndMethod from '@/components/EventButtonExpressionAndMethod.vue';
 import EventPrinter from '@/components/EventPrinter.vue';
 import EventKeycodePrinter from '@/components/EventKeycodePrinter.vue';
+import CustomEventParent from '@/components/CustomEventParent.vue';
 
 @Component({
   components: {
+    CustomEventParent,
     EventKeycodePrinter,
     EventPrinter,
     EventButtonExpressionAndMethod,
@@ -106,6 +136,13 @@ export default class EventBinding extends Vue {
   private bubbleTemplate = `<form @click="callAlert('form')">\n  <div @click="callAlert('div')">\n    <p @click="callAlert('p')">\n      Click Here\n    </p>\n  </div>\n</form>`;
   private bubblePreventTemplate = `<form @click="callAlert('form')">\n  <div @click="callAlert('div')">\n    <p @click.stop="callAlert('p')">\n      Click Here\n    </p>\n  </div>\n</form>`;
   private keyEventModifier = `<input v-model="inputText"\n       type="text"\n       @keypress.enter="triggerEnterKeyFunction"/>`;
+  private emitButtonInline = `<button @click="$emit('delete-row', student.id)">Delete</button>`;
+  private emitButtonFunctionTemplate = `<button @click="deleteRow(student.id)">Function delete</button>`;
+  private emitButtonFunctionScript = `@Emit()\nprivate deleteRow(id: number): number {\n  return id;\n}`;
+  private emitButtonCustomTemplate = `<button @click="triggerDelete(student.id)">Function delete</button>`;
+  private emitButtonCustomScript = `@Emit('delete-row')\nprivate triggerDelete(id: number): number {\n  return id;\n}`;
+  private emitParentTemplate = `<custom-event :students="studentsList" @delete-row="deleteRow"></custom-event>`;
+  private emitParentScript = `private deleteRow(id: number): void {\n  ...\n}`;
 
   private callAlert(elem: string): void {
     window.alert(elem);
