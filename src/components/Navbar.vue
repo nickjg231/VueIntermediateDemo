@@ -4,6 +4,7 @@
             <router-link :to="'/'"><li>Home</li></router-link>
             <router-link :to="'/JavaScript'"><li>JavaScript</li></router-link>
             <router-link :to="'/data-binding'"><li>Data Binding</li></router-link>
+            <router-link :to="'/event-binding'"><li>Event Binding</li></router-link>
             <router-link :to="'/StateManagement'"><li>State Management</li></router-link>
         </ul>
         <hr>

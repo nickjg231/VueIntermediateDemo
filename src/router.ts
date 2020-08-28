@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import JavascriptCrashCourse from './views/JavascriptCrashCourse.vue';
 import StateManagement from './views/StateManagement.vue';
-import Binding from './views/Binding.vue';
+import DataBinding from './views/DataBinding.vue';
+import EventBinding from './views/EventBinding.vue';
 
 Vue.use(Router);
 
@@ -33,8 +34,13 @@ export default new Router({
     },
     {
       path: '/data-binding',
-      name: 'Binding',
-      component: Binding,
+      name: 'DataBinding',
+      component: DataBinding,
+    },
+    {
+      path: '/event-binding',
+      name: 'EventBinding',
+      component: EventBinding,
     },
   ],
 });

@@ -97,7 +97,7 @@ import ClassBinding from '@/components/ClassBinding.vue';
     SectionComponent
   }
 })
-export default class Binding extends Vue {
+export default class DataBinding extends Vue {
   private fetchSimulatorCodeTemplate = `<template>\n  <div>\n    <table>\n      <thead>\n        <tr>\n          <th>Id</th>\n          <th>Name</th>\n          <th>Address</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr v-if="isLoading">\n          <td colspan="3">\n            <loader></loader>\n          </td>\n        </tr>\n        <tr v-else-if="usersList.length === 0">\n          <td colspan="3">There are no results to show</td>\n        </tr>\n        <template v-else>\n          <tr v-for="user in usersList">\n            <td>{{user.id}}</td>\n            <td>{{user.name}}</td>\n            <td>{{user.address}}</td>\n          </tr>\n        </template>\n      </tbody>\n    </table>\n    <br>\n    <button @click="fetchUsers">Fetch Users</button>\n    <button @click="clearUsers">Clear Users</button>\n  </div>\n</template>\n`;
   private fetchSimulatorCodeScript = `export default class FetchSimulator extends Vue {\n  private isLoading: boolean = false;\n  private usersList: any[] = [];\n\n  private fetchUsers(): void {\n    this.isLoading = true;\n    fetch(...).then(() => this.isLoading = false);\n  }\n\n  private clearUsers(): void {\n    this.usersList = [];\n  }\n}`;
   private disabledButtonTemplate = `<button :disabled="isDisabled">Click</button>`;
@@ -110,16 +110,6 @@ export default class Binding extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.home {
-  text-align: center;
-  margin: 180px auto 0;
-  font-size: 20px;
-
-  .title {
-    font-size: 36px;
-  }
-}
-
 code {
   white-space: nowrap;
 }

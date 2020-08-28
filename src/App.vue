@@ -66,7 +66,6 @@ code {
   background-color: #eff0f1;
   padding: 0 8px;
 }
-
 .spaced-list {
   li {
     padding-top: 12px;
