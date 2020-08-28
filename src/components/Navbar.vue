@@ -5,6 +5,7 @@
             <router-link :to="'/JavaScript'"><li>JavaScript</li></router-link>
             <router-link :to="'/data-binding'"><li>Data Binding</li></router-link>
             <router-link :to="'/event-binding'"><li>Event Binding</li></router-link>
+            <router-link :to="'/input-binding'"><li>Input Binding</li></router-link>
             <router-link :to="'/StateManagement'"><li>State Management</li></router-link>
         </ul>
         <hr>
@@ -21,7 +22,7 @@ export default class Navbar extends Vue {
 
 <style lang="scss" scoped>
 .nav-container {
-    width: 100%;
+    width: 110%;
 }
 
 ul {
