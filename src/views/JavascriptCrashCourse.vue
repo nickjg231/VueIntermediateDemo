@@ -35,7 +35,6 @@
             <li><code>number</code> - double-precision 64-bit floating point</li>
             <li><code>string</code></li>
             <li><code>bigint</code> - arbitrary precision</li>
-            <li><code>symbol</code> - guaranteed to be unique</li>
             <li><code>Object</code> - almost anything made with the <code>new</code> keyword (Object, Array, Map, Set, Date, etc.)</li>
             <li><code>Function</code> - technically every Function is derived from <code>Object</code> constructor.</li>
         </ul>
@@ -52,7 +51,7 @@
         <hr>
 
         <h3>Arrays</h3>
-        <p>Arrays work more or less the way you would expect, with a few exceptions. For example, an array can contain values of varying types.</p>
+        <p>Arrays work more or less the way you would expect, with a few exceptions. For example, JavaScript can hold values of varying types in a single array.</p>
         <CodeSnippet :code="variableArray"></CodeSnippet>
         <p>Since they are objects, they have properties and methods such as <code>Array.length</code> or <code>Array.push(value)</code>.
         <p>Some of the most common / helpful array methods and properties:</p>
@@ -64,7 +63,7 @@
             <li><code>.includes(val)</code> - determines whether the array contains a specified value</li>
             <li><code>.map(func)</code> - returns a new array containing the results of calling a function on every element in this array</li>
             <li><code>.reduce(func)</code> - perform a function against an accumulator and each array element, reducing it to a single value</li>
-            <li><code>.sort(func)</code> - sorts an array</li>
+            <li><code>.sort(func)</code> - sorts an array using the provided comparison function, `func`</li>
         </ul>
         <CodeSnippet :code="arrayHelp"></CodeSnippet>
 
@@ -194,15 +193,16 @@ export default class JavascriptCrashCourse extends Vue {
     }
 
     let addTwoNumbers = (x, y) => x + y;
+
+
+    // in any case, addTwoNumbers can be called:
+    const result = addTwoNumbers(5, 10); // result now holds 15
     `;
 
     private dataTypes: string =
     `    var x;                                    // declare variable but assign no value;
     console.log("x's value is", x);           // output: "x's value is undefined"
-    console.log("x's type is", typeof of);    // output: "x's type is undefined"
-
-    let thing = Symbol("optional desc");      // description for debug purposes only
-    // based on the introduction to Vue, what might the Symbol type be useful for?
+    console.log("x's type is", typeof x);     // output: "x's type is 'undefined'"
     `;
 
     private variableArray: string =

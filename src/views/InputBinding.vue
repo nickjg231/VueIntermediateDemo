@@ -8,9 +8,12 @@
                     <ul>
                         <li>input</li>
                             <ul>
-                                <li>input</li>
                                 <li>checkbox</li>
+                                <li>date</li>
                                 <li>radio</li>
+                                <li>tel</li>
+                                <li>text</li>
+                                <li>etc., etc.</li>
                             </ul>
                         <li>textarea</li>
                         <li>select</li>

@@ -100,6 +100,7 @@
       <p>Each of these would emit identical events. The parent component could then catch these events adding an event handler that calls a function:</p>
       <code-snippet :code="emitParentTemplate"></code-snippet>
       <p>Then the arguments to this function would be the payload you emitted in the event. In this case, the student.id value</p>
+      <p><b>NOTE:</b> The payload is automatically passed into the specified function's arguments - even if you're emitting 2, 3, or any other number of values. As a result, you only need to specify the name of the function to call when an event is emitted, regardless of how many arguments it takes.</p>
       <code-snippet :code="emitParentScript"></code-snippet>
       <p>Take the following example</p>
       <custom-event-parent></custom-event-parent>
@@ -135,7 +136,7 @@ export default class EventBinding extends Vue {
   private buttonExpressionMethodScript = `export default class EventButton extends Vue {\n  private counter: number = 0;\n\n  private incrementCounter(): void {\n    this.counter++;\n  }\n}`;
   private bubbleTemplate = `<form @click="callAlert('form')">\n  <div @click="callAlert('div')">\n    <p @click="callAlert('p')">\n      Click Here\n    </p>\n  </div>\n</form>`;
   private bubblePreventTemplate = `<form @click="callAlert('form')">\n  <div @click="callAlert('div')">\n    <p @click.stop="callAlert('p')">\n      Click Here\n    </p>\n  </div>\n</form>`;
-  private keyEventModifier = `<input v-model="inputText"\n       type="text"\n       @keypress.enter="triggerEnterKeyFunction"/>`;
+  private keyEventModifier = `<input v-model="inputText"\n       type="text"\n       @keypress.enter="triggerEnterKeyFunction"\n/>`;
   private emitButtonInline = `<button @click="$emit('delete-row', student.id)">Delete</button>`;
   private emitButtonFunctionTemplate = `<button @click="deleteRow(student.id)">Function delete</button>`;
   private emitButtonFunctionScript = `@Emit()\nprivate deleteRow(id: number): number {\n  return id;\n}`;

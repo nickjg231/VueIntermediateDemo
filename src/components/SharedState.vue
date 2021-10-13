@@ -5,7 +5,7 @@
             The value of the counter in the store is currently: {{ $store.state.count }}.
         </div>
         <div class="incrementer">
-            <button @click="incrementCounter()">ADD ONE FROM A</button>
+            <button @click="incrementCounter()">ADD ONE FROM {{componentID}}</button>
         </div>
     </div>
 </template>
